@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fbf5eb" />
+  <title>Letícia & Amanda | Entrada</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --cream:#fbf5eb;
+      --terracotta:#b65f45;
+      --green:#44564d;
+      --green-dark:#33423b;
+      --ink:#2f312e;
+      --muted:#77736d;
+      --white:#fffdf9;
+      --error:#a84436;
+      --line:rgba(68,86,77,.18);
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      min-height:100%;
+      background:var(--cream);
+      color:var(--ink);
+    }
+
+    body{
+      font-family:"Montserrat",Arial,sans-serif;
+    }
+
+    button,input{font:inherit}
+
+    .page{
+      min-height:100svh;
+      display:grid;
+      place-items:center;
+      padding:40px 20px;
+      background:var(--cream);
+    }
+
+    .content{
+      width:min(100%,520px);
+      text-align:center;
+    }
+
+    .monogram{
+      margin-bottom:26px;
+      font-family:"Cormorant Garamond",Georgia,serif;
+      font-size:64px;
+      line-height:1;
+      font-weight:500;
+      letter-spacing:.02em;
+      color:var(--ink);
+    }
+
+    .eyebrow{
+      margin:0 0 10px;
+      color:var(--terracotta);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+
+    h1,
+    h2{
+      margin:0;
+      font-family:"Cormorant Garamond",Georgia,serif;
+      font-weight:600;
+    }
+
+    h1{
+      color:var(--terracotta);
+      font-size:clamp(42px,10vw,62px);
+      line-height:.95;
+    }
+
+    .script{
+      display:block;
+      margin-top:2px;
+      color:var(--ink);
+      font-family:"Allura","Segoe Script",cursive;
+      font-size:40px;
+      font-weight:400;
+      line-height:.9;
+    }
+
+    .intro{
+      max-width:420px;
+      margin:26px auto 0;
+      font-family:"Cormorant Garamond",Georgia,serif;
+      font-size:21px;
+      line-height:1.45;
+      color:#494a46;
+    }
+
+    .support{
+      max-width:430px;
+      margin:12px auto 0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.6;
+    }
+
+    .exclusive{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      margin-top:20px;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--green);
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+
+    .exclusive::before{
+      content:"";
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:var(--terracotta);
+    }
+
+    /* CONTAGEM REGRESSIVA */
+    .countdown{
+      margin-top:32px;
+    }
+
+    .counter-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+      margin-top:18px;
+    }
+
+    .counter-item{
+      padding:15px 6px 12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(255,253,249,.55);
+    }
+
+    .counter-number{
+      display:block;
+      color:var(--green);
+      font-family:"Cormorant Garamond",Georgia,serif;
+      font-size:34px;
+      font-weight:700;
+      line-height:1;
+      font-variant-numeric:tabular-nums;
+    }
+
+    .counter-label{
+      display:block;
+      margin-top:5px;
+      color:var(--muted);
+      font-size:8px;
+      font-weight:700;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    .date-note{
+      margin-top:18px;
+      color:var(--green);
+      font-family:"Cormorant Garamond",Georgia,serif;
+      font-size:17px;
+      font-weight:600;
+    }
+
+    /* FORMULÁRIO */
+    form{
+      margin-top:30px;
+      text-align:left;
+    }
+
+    label{
+      display:block;
+      margin:0 0 8px 4px;
+      color:var(--green);
+      font-size:12px;
+      font-weight:700;
+    }
+
+    input{
+      width:100%;
+      height:58px;
+      padding:0 18px;
+      border:1px solid rgba(68,86,77,.24);
+      border-radius:14px;
+      background:var(--white);
+      color:var(--ink);
+      outline:none;
+      transition:.2s ease;
+    }
+
+    input:focus{
+      border-color:var(--terracotta);
+      box-shadow:0 0 0 4px rgba(182,95,69,.10);
+    }
+
+    input::placeholder{color:#aaa39a}
+
+    .button{
+      width:100%;
+      min-height:58px;
+      margin-top:12px;
+      border:0;
+      border-radius:14px;
+      background:var(--green);
+      color:#fff;
+      font-weight:700;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+
+    .button:hover{background:var(--green-dark)}
+    .button:disabled{opacity:.65;cursor:wait}
+
+    .status{
+      min-height:22px;
+      margin-top:13px;
+      text-align:center;
+      font-size:12px;
+      line-height:1.5;
+      font-weight:700;
+    }
+
+    .status.error{color:var(--error)}
+
+    .helper{
+      margin:10px 4px 0;
+      color:#8d877f;
+      font-size:10px;
+      line-height:1.55;
+      text-align:center;
+    }
+
+    .event{
+      margin-top:30px;
+      color:var(--green);
+      font-family:"Cormorant Garamond",Georgia,serif;
+      font-size:17px;
+      font-weight:600;
+      letter-spacing:.04em;
+    }
+
+    .state{
+      display:none;
+    }
+
+    .state.show{
+      display:block;
+      animation:fadeIn .28s ease both;
+    }
+
+    /* ACESSO LIBERADO */
+    .approved{
+      min-height:calc(100svh - 80px);
+      display:none;
+      place-items:center;
+    }
+
+    .approved.show{
+      display:grid;
+    }
+
+    .approved-box{
+      width:100%;
+    }
+
+    .approved-mark{
+      width:74px;
+      height:74px;
+      display:grid;
+      place-items:center;
+      margin:0 auto 18px;
+      border-radius:50%;
+      background:var(--green);
+      color:#fff;
+      font-size:34px;
+      font-weight:700;
+    }
+
+    .approved-title{
+      color:var(--green);
+      font-size:clamp(44px,10vw,62px);
+      line-height:.95;
+    }
+
+    .approved-name{
+      margin-top:18px;
+      color:var(--terracotta);
+      font-family:"Cormorant Garamond",Georgia,serif;
+      font-size:32px;
+      font-weight:700;
+      line-height:1.1;
+    }
+
+    .approved-instruction{
+      max-width:390px;
+      margin:22px auto 0;
+      color:var(--ink);
+      font-size:14px;
+      line-height:1.65;
+      font-weight:600;
+    }
+
+    .approved-time{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:600;
+    }
+
+    .live-indicator{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:20px;
+      padding:8px 12px;
+      border:1px solid rgba(68,86,77,.18);
+      border-radius:999px;
+      color:var(--green);
+      font-size:10px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+    }
+
+    .pulse{
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--green);
+      animation:pulse 1.4s ease infinite;
+    }
+
+    .secondary{
+      margin-top:28px;
+      background:transparent;
+      color:var(--green);
+      border:1px solid rgba(68,86,77,.28);
+    }
+
+    .secondary:hover{background:rgba(68,86,77,.05)}
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(6px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    @keyframes pulse{
+      0%,100%{opacity:1;transform:scale(1)}
+      50%{opacity:.35;transform:scale(.75)}
+    }
+
+    @media (max-width:620px){
+      .page{padding:34px 18px}
+      .monogram{
+        font-size:54px;
+        margin-bottom:24px;
+      }
+      .intro{font-size:19px}
+      .script{font-size:35px}
+      .counter-number{font-size:30px}
+      .counter-item{padding:14px 4px 11px}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{
+        animation:none!important;
+        transition:none!important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="content">
+
+      <!-- ESTADO 1: ANTES DE 26/09 -->
+      <div class="state" id="waitingState">
+        <div class="monogram">L&amp;A</div>
+        <p class="eyebrow">26 • 09 • 2026</p>
+
+        <h1>
+          Nos vemos
+          <span class="script">em breve</span>
+        </h1>
+
+        <p class="intro">
+          O acesso será disponibilizado em alguns dias.
+        </p>
+
+        <div class="countdown" aria-label="Contagem regressiva para liberação da entrada">
+          <div class="counter-grid">
+            <div class="counter-item">
+              <span class="counter-number" id="days">00</span>
+              <span class="counter-label">Dias</span>
+            </div>
+            <div class="counter-item">
+              <span class="counter-number" id="hours">00</span>
+              <span class="counter-label">Horas</span>
+            </div>
+            <div class="counter-item">
+              <span class="counter-number" id="minutes">00</span>
+              <span class="counter-label">Min</span>
+            </div>
+            <div class="counter-item">
+              <span class="counter-number" id="seconds">00</span>
+              <span class="counter-label">Seg</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exclusive">Entrada exclusiva por convidado</div>
+
+        <p class="support">
+          A entrada será liberada apenas para convidados que constam na lista.
+        </p>
+
+        <div class="event">Letícia &amp; Amanda · 26.09.2026</div>
+      </div>
+
+      <!-- ESTADO 2: A PARTIR DE 26/09 -->
+      <div class="state" id="entryState">
+        <div class="monogram">L&amp;A</div>
+        <p class="eyebrow">Entrada · 26 • 09 • 2026</p>
+
+        <h1>
+          Bem-vindo
+          <span class="script">ao nosso dia</span>
+        </h1>
+
+        <p class="intro">
+          A entrada será liberada apenas para convidados que constam na lista.
+        </p>
+
+        <p class="support">
+          Digite seu nome para validar o acesso.
+        </p>
+
+        <div class="exclusive">Entrada exclusiva por convidado</div>
+
+        <form id="entryForm" autocomplete="off">
+          <label for="nome">Seu nome</label>
+          <input
+            id="nome"
+            name="nome"
+            type="text"
+            placeholder="Digite seu nome"
+            autocomplete="off"
+            maxlength="100"
+          />
+
+          <button class="button" id="submitButton" type="submit">
+            Validar entrada
+          </button>
+
+          <div class="status" id="status" role="status" aria-live="polite"></div>
+
+          <p class="helper">
+            Cada convidado possui uma única entrada.
+          </p>
+        </form>
+
+        <div class="event">Letícia &amp; Amanda · 26.09.2026</div>
+      </div>
+
+      <!-- ESTADO 3: ENTRADA APROVADA -->
+      <div class="approved" id="approvedState" aria-live="polite">
+        <div class="approved-box">
+          <div class="monogram">L&amp;A</div>
+
+          <div class="approved-mark">✓</div>
+          <p class="eyebrow">Entrada validada</p>
+
+          <h2 class="approved-title">Acesso liberado</h2>
+
+          <div class="approved-name" id="approvedName"></div>
+
+          <p class="approved-instruction">
+            Apresente esta tela na entrada.
+          </p>
+
+          <div class="live-indicator">
+            <span class="pulse"></span>
+            Acesso ativo
+          </div>
+
+          <div class="approved-time" id="approvedTime"></div>
+
+          <p class="support">
+            Entrada exclusiva deste convidado.
+          </p>
+
+          <div class="event">Letícia &amp; Amanda · 26.09.2026</div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    /*
+      ============================================================
+      CONFIGURAÇÃO
+      ============================================================
+
+      1) Publique o arquivo google-apps-script.gs como Aplicativo da Web.
+      2) Cole abaixo a URL terminada em /exec.
+      3) Preencha a aba "Convidados" da planilha com um nome por linha.
+
+      Sem FORM_ENDPOINT, o HTML funciona apenas em modo de demonstração.
+    */
+    const FORM_ENDPOINT = "";
+
+    // Acesso liberado em 26/09/2026 à meia-noite no horário de Brasília.
+    const RELEASE_DATE = new Date("2026-09-26T00:00:00-03:00");
+
+    // Somente para teste local quando FORM_ENDPOINT ainda não estiver configurado.
+    const DEMO_GUESTS = ["Convidado Teste", "Jamilly Danielle"];
+
+    const waitingState = document.getElementById("waitingState");
+    const entryState = document.getElementById("entryState");
+    const approvedState = document.getElementById("approvedState");
+
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    const form = document.getElementById("entryForm");
+    const input = document.getElementById("nome");
+    const button = document.getElementById("submitButton");
+    const statusEl = document.getElementById("status");
+
+    const approvedName = document.getElementById("approvedName");
+    const approvedTime = document.getElementById("approvedTime");
+
+    function normalizeName(value) {
+      return String(value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function showState(state) {
+      waitingState.classList.remove("show");
+      entryState.classList.remove("show");
+      approvedState.classList.remove("show");
+
+      if (state === "waiting") waitingState.classList.add("show");
+      if (state === "entry") entryState.classList.add("show");
+      if (state === "approved") approvedState.classList.add("show");
+    }
+
+    function updateAccessState() {
+      const now = new Date();
+      const diff = RELEASE_DATE.getTime() - now.getTime();
+
+      if (diff <= 0) {
+        showState("entry");
+        return true;
+      }
+
+      showState("waiting");
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      daysEl.textContent = String(days).padStart(2, "0");
+      hoursEl.textContent = String(hours).padStart(2, "0");
+      minutesEl.textContent = String(minutes).padStart(2, "0");
+      secondsEl.textContent = String(seconds).padStart(2, "0");
+
+      return false;
+    }
+
+    function showError(message) {
+      statusEl.textContent = message;
+      statusEl.classList.add("error");
+    }
+
+    function clearStatus() {
+      statusEl.textContent = "";
+      statusEl.classList.remove("error");
+    }
+
+    function showApproved(name, timestamp) {
+      approvedName.textContent = name;
+
+      const when = timestamp ? new Date(timestamp) : new Date();
+      approvedTime.textContent =
+        "Validado às " +
+        when.toLocaleTimeString("pt-BR", {
+          hour: "2-digit",
+          minute: "2-digit",
+          timeZone: "America/Sao_Paulo"
+        });
+
+      showState("approved");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function validateWithAppsScript(name) {
+      return new Promise((resolve, reject) => {
+        const callbackName =
+          "__weddingCheckin_" +
+          Date.now() +
+          "_" +
+          Math.random().toString(36).slice(2);
+
+        const script = document.createElement("script");
+        const timeout = setTimeout(() => cleanup(new Error("Tempo de resposta excedido.")), 12000);
+
+        function cleanup(error, result) {
+          clearTimeout(timeout);
+          try { delete window[callbackName]; } catch (_) {}
+          script.remove();
+
+          if (error) reject(error);
+          else resolve(result);
+        }
+
+        window[callbackName] = (result) => cleanup(null, result);
+
+        const params = new URLSearchParams({
+          action: "checkin",
+          nome: name,
+          callback: callbackName
+        });
+
+        script.onerror = () => cleanup(new Error("Falha ao validar o convidado."));
+        script.src = FORM_ENDPOINT + "?" + params.toString();
+        document.body.appendChild(script);
+      });
+    }
+
+    function validateDemo(name) {
+      const normalized = normalizeName(name);
+
+      const matched = DEMO_GUESTS.find(
+        guest => normalizeName(guest) === normalized
+      );
+
+      if (!matched) {
+        return {
+          ok: false,
+          code: "NOT_FOUND",
+          message: "Acesso negado. Seu nome não consta na lista de convidados."
+        };
+      }
+
+      const usedKey = "wedding-demo-used-" + normalized;
+
+      if (localStorage.getItem(usedKey)) {
+        return {
+          ok: false,
+          code: "ALREADY_USED",
+          message: "Entrada já utilizada. A entrada é exclusiva por convidado."
+        };
+      }
+
+      localStorage.setItem(usedKey, new Date().toISOString());
+
+      return {
+        ok: true,
+        nome: matched,
+        timestamp: new Date().toISOString()
+      };
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (new Date() < RELEASE_DATE) {
+        showState("waiting");
+        return;
+      }
+
+      const name = input.value.replace(/\s+/g, " ").trim();
+
+      if (!name) {
+        showError("Acesso negado. Digite seu nome para validar a entrada.");
+        input.focus();
+        return;
+      }
+
+      clearStatus();
+      button.disabled = true;
+      button.textContent = "Validando...";
+
+      try {
+        const result = FORM_ENDPOINT
+          ? await validateWithAppsScript(name)
+          : validateDemo(name);
+
+        if (!result || !result.ok) {
+          showError(
+            (result && result.message) ||
+            "Acesso negado. Não foi possível validar sua entrada."
+          );
+          return;
+        }
+
+        showApproved(result.nome || name, result.timestamp);
+
+      } catch (error) {
+        console.error(error);
+        showError("Não foi possível validar sua entrada agora. Tente novamente.");
+      } finally {
+        button.disabled = false;
+        button.textContent = "Validar entrada";
+      }
+    });
+
+    input.addEventListener("input", clearStatus);
+
+    updateAccessState();
+    setInterval(updateAccessState, 1000);
+  </script>
+</body>
+</html>
