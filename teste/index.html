@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>L&A | Teste de entrada</title>
+<style>
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fbf5eb;color:#2f312e;font-family:Arial,sans-serif}.box{width:min(90%,480px);text-align:center}.logo{font:500 60px Georgia,serif;margin-bottom:20px}.tag{color:#b65f45;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase}.title{font:600 48px Georgia,serif;color:#b65f45;margin:10px 0}.text{font:20px Georgia,serif;line-height:1.45}.note{margin:18px 0;color:#44564d;font-size:12px}.input{width:100%;height:56px;padding:0 16px;border:1px solid #bbc3bd;border-radius:12px;background:#fffdf9;box-sizing:border-box}.btn{width:100%;height:56px;margin-top:12px;border:0;border-radius:12px;background:#44564d;color:#fff;font-weight:700}.msg{margin-top:12px;font-weight:700;font-size:13px;color:#a84436}.approved{display:none}.check{width:70px;height:70px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:#44564d;color:#fff;font-size:34px}.name{font:700 32px Georgia,serif;color:#b65f45;margin-top:16px}.secondary{background:transparent;color:#44564d;border:1px solid #aab4ae}.help{margin-top:22px;padding:14px;border:1px dashed #bbc3bd;border-radius:12px;text-align:left;font-size:12px;line-height:1.6;color:#6f746f}
+</style>
+</head>
+<body>
+<div class="box">
+  <section id="entry">
+    <div class="tag">Versão de teste</div>
+    <div class="logo">L&amp;A</div>
+    <div class="tag">Entrada · 26 • 09 • 2026</div>
+    <h1 class="title">Bem-vindo</h1>
+    <p class="text">A entrada será liberada apenas para convidados que constam na lista.</p>
+    <p class="note">Digite seu nome para validar o acesso. Entrada exclusiva por convidado.</p>
+    <input class="input" id="nome" placeholder="Digite seu nome">
+    <button class="btn" id="validar">Validar entrada</button>
+    <div class="msg" id="msg"></div>
+    <div class="help"><b>Nomes para teste:</b><br>Jamilly Danielle → acesso liberado<br>Convidado Teste → acesso liberado<br>Qualquer outro nome → acesso negado<br><br>Após liberar, o mesmo nome retorna “entrada já utilizada”.</div>
+    <button class="btn secondary" id="reset">Reiniciar testes</button>
+  </section>
+  <section class="approved" id="approved">
+    <div class="tag">Versão de teste</div>
+    <div class="logo">L&amp;A</div>
+    <div class="check">✓</div>
+    <div class="tag">Entrada validada</div>
+    <h2 class="title">Acesso liberado</h2>
+    <div class="name" id="approvedName"></div>
+    <p class="text">Apresente esta tela na entrada.</p>
+    <p class="note" id="hora"></p>
+    <button class="btn secondary" id="voltar">Testar outro nome</button>
+    <button class="btn secondary" id="reset2">Reiniciar testes</button>
+  </section>
+</div>
+<script>
+const guests=['Jamilly Danielle','Convidado Teste'];
+const norm=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
+const key=n=>'la-test-'+norm(n);
+const entry=document.getElementById('entry'),approved=document.getElementById('approved'),nome=document.getElementById('nome'),msg=document.getElementById('msg');
+function reset(){guests.forEach(n=>localStorage.removeItem(key(n)));msg.textContent='';nome.value='';approved.style.display='none';entry.style.display='block'}
+document.getElementById('validar').onclick=()=>{const typed=nome.value.trim();if(!typed){msg.textContent='Acesso negado. Digite seu nome.';return}const found=guests.find(g=>norm(g)===norm(typed));if(!found){msg.textContent='Acesso negado. Seu nome não consta na lista de convidados.';return}if(localStorage.getItem(key(found))){msg.textContent='Entrada já utilizada. A entrada é exclusiva por convidado.';return}localStorage.setItem(key(found),new Date().toISOString());document.getElementById('approvedName').textContent=found;document.getElementById('hora').textContent='Validado às '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});entry.style.display='none';approved.style.display='block'};
+document.getElementById('voltar').onclick=()=>{approved.style.display='none';entry.style.display='block';nome.value='';msg.textContent=''};document.getElementById('reset').onclick=reset;document.getElementById('reset2').onclick=reset;
+</script>
+</body>
+</html>
