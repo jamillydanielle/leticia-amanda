@@ -22,7 +22,6 @@
     form{margin-top:30px;text-align:left}label{display:block;margin:0 0 8px 4px;color:var(--green);font-size:12px;font-weight:700}input{width:100%;height:58px;padding:0 18px;border:1px solid rgba(68,86,77,.24);border-radius:14px;background:var(--white);color:var(--ink);outline:none;transition:.2s ease}input:focus{border-color:var(--terracotta);box-shadow:0 0 0 4px rgba(182,95,69,.10)}input::placeholder{color:#aaa39a}
     .button{width:100%;min-height:58px;margin-top:12px;border:0;border-radius:14px;background:var(--green);color:#fff;font-weight:700;cursor:pointer;transition:.18s ease}.button:hover{background:var(--green-dark)}.button:disabled{opacity:.65;cursor:wait}.status{min-height:22px;margin-top:13px;text-align:center;font-size:12px;line-height:1.5;font-weight:700}.status.error{color:var(--error)}.helper{margin:10px 4px 0;color:#8d877f;font-size:10px;line-height:1.55;text-align:center}.event{margin-top:30px;color:var(--green);font-family:"Cormorant Garamond",Georgia,serif;font-size:17px;font-weight:600;letter-spacing:.04em}
     .state{display:none}.state.show{display:block;animation:fadeIn .28s ease both}.approved{min-height:calc(100svh - 80px);display:none;place-items:center}.approved.show{display:grid}.approved-box{width:100%}.approved-mark{width:74px;height:74px;display:grid;place-items:center;margin:0 auto 18px;border-radius:50%;background:var(--green);color:#fff;font-size:34px;font-weight:700}.approved-title{color:var(--green);font-size:clamp(44px,10vw,62px);line-height:.95}.approved-name{margin-top:18px;color:var(--terracotta);font-family:"Cormorant Garamond",Georgia,serif;font-size:32px;font-weight:700;line-height:1.1}.approved-instruction{max-width:390px;margin:22px auto 0;color:var(--ink);font-size:14px;line-height:1.65;font-weight:600}.approved-time{margin-top:18px;color:var(--muted);font-size:11px;font-weight:600}.live-indicator{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:8px 12px;border:1px solid rgba(68,86,77,.18);border-radius:999px;color:var(--green);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.4s ease infinite}
-    .admin-preview-button{width:100%;min-height:48px;margin-top:18px;border:1px dashed rgba(68,86,77,.32);border-radius:14px;background:transparent;color:var(--green);font-size:12px;font-weight:700;cursor:pointer}.admin-preview-button:hover{background:rgba(68,86,77,.05);border-style:solid}.admin-banner{display:none;margin:0 0 22px;padding:10px 12px;border:1px solid rgba(182,95,69,.24);border-radius:12px;background:rgba(182,95,69,.07);color:var(--terracotta);font-size:10px;line-height:1.5;font-weight:700;letter-spacing:.04em;text-transform:uppercase}.admin-banner.show{display:block}.admin-exit{display:none;width:100%;min-height:44px;margin-top:12px;border:0;background:transparent;color:var(--muted);font-size:11px;font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:3px}.admin-exit.show{display:block}
     @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
     @media(max-width:620px){.page{padding:34px 18px}.monogram{font-size:54px;margin-bottom:24px}.intro{font-size:19px}.script{font-size:35px}.counter-number{font-size:30px}.counter-item{padding:14px 4px 11px}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
@@ -42,13 +41,10 @@
       </div></div>
       <div class="exclusive">Entrada exclusiva por convidado</div>
       <p class="support">A entrada será liberada apenas para convidados que constam na lista.</p>
-      <!-- TEMPORÁRIO: remover após os testes -->
-      <button class="admin-preview-button" id="adminPreviewButton" type="button">Ver no modo admin</button>
       <div class="event">Letícia &amp; Amanda · 26.09.2026</div>
     </div>
 
     <div class="state" id="entryState">
-      <div class="admin-banner" id="adminBanner">Modo admin · visualização de teste · nenhuma entrada será registrada</div>
       <div class="monogram">L&amp;A</div><p class="eyebrow">Entrada · 26 • 09 • 2026</p>
       <h1>Bem-vindo<span class="script">ao nosso dia</span></h1>
       <p class="intro">A entrada será liberada apenas para convidados que constam na lista.</p>
@@ -60,18 +56,15 @@
         <div class="status" id="status" role="status" aria-live="polite"></div>
         <p class="helper">Cada convidado possui uma única entrada.</p>
       </form>
-      <button class="admin-exit" id="adminExitButton" type="button">Sair do modo admin</button>
       <div class="event">Letícia &amp; Amanda · 26.09.2026</div>
     </div>
 
     <div class="approved" id="approvedState" aria-live="polite"><div class="approved-box">
-      <div class="admin-banner" id="approvedAdminBanner">Modo admin · visualização de teste · nenhuma entrada foi registrada</div>
       <div class="monogram">L&amp;A</div><div class="approved-mark">✓</div><p class="eyebrow">Entrada validada</p>
       <h2 class="approved-title">Acesso liberado</h2><div class="approved-name" id="approvedName"></div>
       <p class="approved-instruction">Apresente esta tela na entrada.</p>
       <div class="live-indicator"><span class="pulse"></span>Acesso ativo</div><div class="approved-time" id="approvedTime"></div>
       <p class="support">Entrada exclusiva deste convidado.</p>
-      <button class="admin-exit" id="approvedAdminExitButton" type="button">Voltar ao modo admin</button>
       <div class="event">Letícia &amp; Amanda · 26.09.2026</div>
     </div></div>
   </section></main>
@@ -84,30 +77,15 @@
     const daysEl=document.getElementById("days"),hoursEl=document.getElementById("hours"),minutesEl=document.getElementById("minutes"),secondsEl=document.getElementById("seconds");
     const form=document.getElementById("entryForm"),input=document.getElementById("nome"),button=document.getElementById("submitButton"),statusEl=document.getElementById("status");
     const approvedName=document.getElementById("approvedName"),approvedTime=document.getElementById("approvedTime");
-    const adminPreviewButton=document.getElementById("adminPreviewButton"),adminExitButton=document.getElementById("adminExitButton"),adminBanner=document.getElementById("adminBanner"),approvedAdminBanner=document.getElementById("approvedAdminBanner"),approvedAdminExitButton=document.getElementById("approvedAdminExitButton");
-    let adminPreview=false;
-
     function normalizeName(v){return String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\s+/g," ").trim()}
     function showState(s){waitingState.classList.remove("show");entryState.classList.remove("show");approvedState.classList.remove("show");if(s==="waiting")waitingState.classList.add("show");if(s==="entry")entryState.classList.add("show");if(s==="approved")approvedState.classList.add("show")}
-    function updateAccessState(){
-      if(adminPreview){showState("entry");adminBanner.classList.add("show");adminExitButton.classList.add("show");return true}
-      adminBanner.classList.remove("show");adminExitButton.classList.remove("show");
-      const now=new Date(),diff=RELEASE_DATE.getTime()-now.getTime();
-      if(diff<=0){showState("entry");return true}
-      showState("waiting");const total=Math.floor(diff/1000),d=Math.floor(total/86400),h=Math.floor((total%86400)/3600),m=Math.floor((total%3600)/60),s=total%60;
-      daysEl.textContent=String(d).padStart(2,"0");hoursEl.textContent=String(h).padStart(2,"0");minutesEl.textContent=String(m).padStart(2,"0");secondsEl.textContent=String(s).padStart(2,"0");return false
-    }
+    function updateAccessState(){const now=new Date(),diff=RELEASE_DATE.getTime()-now.getTime();if(diff<=0){showState("entry");return true}showState("waiting");const total=Math.floor(diff/1000),d=Math.floor(total/86400),h=Math.floor((total%86400)/3600),m=Math.floor((total%3600)/60),s=total%60;daysEl.textContent=String(d).padStart(2,"0");hoursEl.textContent=String(h).padStart(2,"0");minutesEl.textContent=String(m).padStart(2,"0");secondsEl.textContent=String(s).padStart(2,"0");return false}
     function showError(msg){statusEl.textContent=msg;statusEl.classList.add("error")}function clearStatus(){statusEl.textContent="";statusEl.classList.remove("error")}
-    function showApproved(name,timestamp){approvedName.textContent=name;approvedAdminBanner.classList.toggle("show",adminPreview);approvedAdminExitButton.classList.toggle("show",adminPreview);const when=timestamp?new Date(timestamp):new Date();approvedTime.textContent="Validado às "+when.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit",timeZone:"America/Sao_Paulo"});showState("approved");window.scrollTo({top:0,behavior:"smooth"})}
+    function showApproved(name,timestamp){approvedName.textContent=name;const when=timestamp?new Date(timestamp):new Date();approvedTime.textContent="Validado às "+when.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit",timeZone:"America/Sao_Paulo"});showState("approved");window.scrollTo({top:0,behavior:"smooth"})}
     function validateWithAppsScript(name){return new Promise((resolve,reject)=>{const cb="__weddingCheckin_"+Date.now()+"_"+Math.random().toString(36).slice(2),script=document.createElement("script"),timeout=setTimeout(()=>cleanup(new Error("Tempo de resposta excedido.")),12000);function cleanup(error,result){clearTimeout(timeout);try{delete window[cb]}catch(_){}script.remove();error?reject(error):resolve(result)}window[cb]=result=>cleanup(null,result);const params=new URLSearchParams({action:"checkin",nome:name,callback:cb});script.onerror=()=>cleanup(new Error("Falha ao validar o convidado."));script.src=FORM_ENDPOINT+"?"+params.toString();document.body.appendChild(script)})}
     function validateDemo(name){const normalized=normalizeName(name),matched=DEMO_GUESTS.find(g=>normalizeName(g)===normalized);if(!matched)return{ok:false,message:"Acesso negado. Seu nome não consta na lista de convidados."};const key="wedding-demo-used-"+normalized;if(localStorage.getItem(key))return{ok:false,message:"Entrada já utilizada. A entrada é exclusiva por convidado."};localStorage.setItem(key,new Date().toISOString());return{ok:true,nome:matched,timestamp:new Date().toISOString()}}
-
-    form.addEventListener("submit",async e=>{e.preventDefault();if(new Date()<RELEASE_DATE&&!adminPreview){showState("waiting");return}const name=input.value.replace(/\s+/g," ").trim();if(!name){showError("Acesso negado. Digite seu nome para validar a entrada.");input.focus();return}clearStatus();button.disabled=true;button.textContent="Validando...";try{const result=adminPreview?{ok:true,nome:name,timestamp:new Date().toISOString()}:FORM_ENDPOINT?await validateWithAppsScript(name):validateDemo(name);if(!result||!result.ok){showError(result&&result.message||"Acesso negado. Não foi possível validar sua entrada.");return}showApproved(result.nome||name,result.timestamp)}catch(err){console.error(err);showError("Não foi possível validar sua entrada agora. Tente novamente.")}finally{button.disabled=false;button.textContent="Validar entrada"}});
-    input.addEventListener("input",clearStatus);
-    adminPreviewButton.addEventListener("click",()=>{adminPreview=true;clearStatus();input.value="";updateAccessState();input.focus()});
-    adminExitButton.addEventListener("click",()=>{adminPreview=false;clearStatus();input.value="";updateAccessState()});
-    approvedAdminExitButton.addEventListener("click",()=>{clearStatus();input.value="";showState("entry");adminBanner.classList.add("show");adminExitButton.classList.add("show");input.focus()});
-    updateAccessState();setInterval(updateAccessState,1000);
+    form.addEventListener("submit",async e=>{e.preventDefault();if(new Date()<RELEASE_DATE){showState("waiting");return}const name=input.value.replace(/\s+/g," ").trim();if(!name){showError("Acesso negado. Digite seu nome para validar a entrada.");input.focus();return}clearStatus();button.disabled=true;button.textContent="Validando...";try{const result=FORM_ENDPOINT?await validateWithAppsScript(name):validateDemo(name);if(!result||!result.ok){showError(result&&result.message||"Acesso negado. Não foi possível validar sua entrada.");return}showApproved(result.nome||name,result.timestamp)}catch(err){console.error(err);showError("Não foi possível validar sua entrada agora. Tente novamente.")}finally{button.disabled=false;button.textContent="Validar entrada"}});
+    input.addEventListener("input",clearStatus);updateAccessState();setInterval(updateAccessState,1000);
   </script>
 </body>
 </html>
